@@ -1,17 +1,14 @@
-#include <PrismEngine.h>
+#include "Sandbox.h"
 
-class Sandbox : public PrismEngine::Application
+Sandbox::Sandbox()
 {
-public:
-	Sandbox()
-	{
-		
-	}
 
-	~Sandbox() 
-	{
-	}
-};
+}
+
+Sandbox::~Sandbox()
+{
+
+}
 
 PrismEngine::Application* PrismEngine::createApplication()
 {
