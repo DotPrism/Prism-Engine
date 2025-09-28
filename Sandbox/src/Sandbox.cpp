@@ -1,8 +1,9 @@
 #include "Sandbox.h"
+#include <iostream>
 
 Sandbox::Sandbox()
 {
-
+	PE_CLIENT_INFO("test");
 }
 
 Sandbox::~Sandbox()
