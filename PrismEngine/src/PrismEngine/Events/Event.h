@@ -1,9 +1,7 @@
 #pragma once
 
+#include "pepch.h"
 #include "PrismEngine/Core.h"
-
-#include <string>
-#include <functional>
 
 namespace PrismEngine
 {

@@ -71,6 +71,11 @@ project "PrismEngine"
 		defines "PE_DEBUG"
 		symbols "On"
 
+		defines
+		{
+			"PE_ENABLE_ASSERTS"
+		}
+
 	filter "configurations:Release"
 		defines "PE_RELEASE"
 		optimize "On"
@@ -124,6 +129,11 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "PE_DEBUG"
 		symbols "On"
+
+		defines
+		{
+			"PE_ENABLE_ASSERTS"
+		}
 
 	filter "configurations:Release"
 		defines "PE_RELEASE"
