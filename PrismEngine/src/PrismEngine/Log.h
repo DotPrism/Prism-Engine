@@ -1,10 +1,9 @@
 #pragma once
 #pragma warning(disable : 4996)
 
-#include <memory>
-
 #include "Core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 
 namespace PrismEngine
 {
@@ -29,8 +28,7 @@ namespace PrismEngine
 #define PE_ENGINE_TRACE(...) ::PrismEngine::Log::getEngineLogger()->trace(__VA_ARGS__)
 
 // Client Logging
-#define PE_CLIENT_ERROR(...) ::PrismEngine::Log::getClientLogger()->error(__VA_ARGS__)
-#define PE_CLIENT_FATAL(...) ::PrismEngine::Log::getClientLogger()->fatal(__VA_ARGS__)
-#define PE_CLIENT_WARN(...) ::PrismEngine::Log::getClientLogger()->warn(__VA_ARGS__)
-#define PE_CLIENT_INFO(...) ::PrismEngine::Log::getClientLogger()->info(__VA_ARGS__)
-#define PE_CLIENT_TRACE(...) ::PrismEngine::Log::getEngineLogger()->trace(__VA_ARGS__)
+#define PE_ERROR(...) ::PrismEngine::Log::getClientLogger()->error(__VA_ARGS__)
+#define PE_WARN(...) ::PrismEngine::Log::getClientLogger()->warn(__VA_ARGS__)
+#define PE_INFO(...) ::PrismEngine::Log::getClientLogger()->info(__VA_ARGS__)
+#define PE_TRACE(...) ::PrismEngine::Log::getEngineLogger()->trace(__VA_ARGS__)

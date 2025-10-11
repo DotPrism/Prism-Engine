@@ -4,6 +4,9 @@
     <Filter Include="PrismEngine">
       <UniqueIdentifier>{A6A834BD-125E-ADB2-9B52-A7890707A4B6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PrismEngine\Events">
+      <UniqueIdentifier>{CA5D8D8C-B641-4EE2-1FA2-48350BA53864}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PrismEngine.h" />
@@ -16,9 +19,22 @@
     <ClInclude Include="src\PrismEngine\Entrypoint.h">
       <Filter>PrismEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\PrismEngine\Events\ApplicationEvent.h">
+      <Filter>PrismEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Events\Event.h">
+      <Filter>PrismEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Events\KeyEvent.h">
+      <Filter>PrismEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Events\MouseEvent.h">
+      <Filter>PrismEngine\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\PrismEngine\Log.h">
       <Filter>PrismEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\pepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\PrismEngine\Application.cpp">
@@ -27,5 +43,6 @@
     <ClCompile Include="src\PrismEngine\Log.cpp">
       <Filter>PrismEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\pepch.cpp" />
   </ItemGroup>
 </Project>
