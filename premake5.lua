@@ -10,6 +10,11 @@ workspace "PrismEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "PrismEngine/vendor/GLFW/include"
+
+include "PrismEngine/vendor/GLFW"
+
 project "PrismEngine"
 	location "PrismEngine"
 	kind "SharedLib"
@@ -30,7 +35,14 @@ project "PrismEngine"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links 
+	{ 
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "platforms:x86"
@@ -66,6 +78,7 @@ project "PrismEngine"
 	filter "configurations:Dist"
 		defines "PE_DIST"
 		optimize "On"
+		symbols "Off"
 
 project "Sandbox"
 	location "Sandbox"
@@ -119,3 +132,4 @@ project "Sandbox"
 	filter "configurations:Dist"
 		defines "PE_DIST"
 		optimize "On"
+		symbols "Off"

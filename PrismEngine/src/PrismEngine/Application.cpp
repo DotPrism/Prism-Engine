@@ -1,30 +1,26 @@
 #include "pepch.h"
 #include "Application.h"
 
-#include "PrismEngine/Log.h"
 #include "PrismEngine/Events/ApplicationEvent.h"
+#include "PrismEngine/Log.h"
+
+#include <GLFW/glfw3.h>
 
 PrismEngine::Application::Application()
 {
-
+	m_Window = std::unique_ptr<Window>(Window::create());
 }
 
 PrismEngine::Application::~Application()
 {
-
 }
 
 void PrismEngine::Application::run()
 {
-	WindowResizeEvent e(1280, 720);
-	if (e.isInCategory(EventCategoryApplication))
+	while (m_Running)
 	{
-		PE_TRACE(e);
+		glClearColor(1, 0, 1, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+		m_Window->onUpdate();
 	}
-	if (e.isInCategory(EventCategoryInput))
-	{
-		PE_TRACE(e);
-	}
-
-	while (true);
 }
