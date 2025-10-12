@@ -13,8 +13,14 @@
     <Filter Include="PrismEngine\Events">
       <UniqueIdentifier>{CA5D8D8C-B641-4EE2-1FA2-48350BA53864}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PrismEngine\ImGui">
+      <UniqueIdentifier>{50825E69-BC98-5CFF-0510-E82071652D87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -40,7 +46,25 @@
     <ClInclude Include="src\PrismEngine\Events\MouseEvent.h">
       <Filter>PrismEngine\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\PrismEngine\ImGui\ImGuiLayer.h">
+      <Filter>PrismEngine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Input.h">
+      <Filter>PrismEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\KeyCodes.h">
+      <Filter>PrismEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Layer.h">
+      <Filter>PrismEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\LayerStack.h">
+      <Filter>PrismEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\PrismEngine\Log.h">
+      <Filter>PrismEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\MouseButtonCodes.h">
       <Filter>PrismEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\PrismEngine\Window.h">
@@ -49,10 +73,25 @@
     <ClInclude Include="src\pepch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\Windows\WIndowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\PrismEngine\Application.cpp">
+      <Filter>PrismEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\ImGui\ImGuiBuild.cpp">
+      <Filter>PrismEngine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\ImGui\ImGuiLayer.cpp">
+      <Filter>PrismEngine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Layer.cpp">
+      <Filter>PrismEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\LayerStack.cpp">
       <Filter>PrismEngine</Filter>
     </ClCompile>
     <ClCompile Include="src\PrismEngine\Log.cpp">

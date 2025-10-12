@@ -22,7 +22,7 @@ namespace PrismEngine
 
 // Engine Logging
 #define PE_ENGINE_ERROR(...) ::PrismEngine::Log::getEngineLogger()->error(__VA_ARGS__)
-#define PE_ENGINE_FATAL(...) ::PrismEngine::Log::getEngineLogger()->fatal(__VA_ARGS__)
+//#define PE_ENGINE_FATAL(...) ::PrismEngine::Log::getEngineLogger()->fatal(__VA_ARGS__)
 #define PE_ENGINE_WARN(...) ::PrismEngine::Log::getEngineLogger()->warn(__VA_ARGS__)
 #define PE_ENGINE_INFO(...) ::PrismEngine::Log::getEngineLogger()->info(__VA_ARGS__)
 #define PE_ENGINE_TRACE(...) ::PrismEngine::Log::getEngineLogger()->trace(__VA_ARGS__)
@@ -31,4 +31,4 @@ namespace PrismEngine
 #define PE_ERROR(...) ::PrismEngine::Log::getClientLogger()->error(__VA_ARGS__)
 #define PE_WARN(...) ::PrismEngine::Log::getClientLogger()->warn(__VA_ARGS__)
 #define PE_INFO(...) ::PrismEngine::Log::getClientLogger()->info(__VA_ARGS__)
-#define PE_TRACE(...) ::PrismEngine::Log::getEngineLogger()->trace(__VA_ARGS__)
+#define PE_TRACE(...) ::PrismEngine::Log::getClientLogger()->trace(__VA_ARGS__)

@@ -6,6 +6,8 @@
 #include "PrismEngine/Events/MouseEvent.h"
 #include "PrismEngine/Events/KeyEvent.h"
 
+#include <glad/glad.h>
+
 namespace PrismEngine 
 {
 	static bool s_GLFWInitialized = false;
@@ -51,9 +53,19 @@ namespace PrismEngine
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_Data);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress); 
+		PE_CORE_ASSERT(status, "Failed to initialize Glad!");
 		setVSync(true);
 
 		// set GLFW callbacks
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				KeyTypedEvent event(keycode);
+				data.EventCallback(event);
+			});
+
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) 
 		{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);

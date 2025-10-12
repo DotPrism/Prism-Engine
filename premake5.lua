@@ -1,5 +1,6 @@
 workspace "PrismEngine"
 	platforms { "x86", "x64" }
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -12,13 +13,19 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "PrismEngine/vendor/GLFW/include"
+IncludeDir["Glad"] = "PrismEngine/vendor/Glad/include"
+IncludeDir["ImGui"] = "PrismEngine/vendor/imgui"
+IncludeDir["glm"] = "Hazel/vendor/glm"
 
 include "PrismEngine/vendor/GLFW"
+include "PrismEngine/vendor/Glad"
+include "PrismEngine/vendor/imgui"
 
 project "PrismEngine"
 	location "PrismEngine"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -29,19 +36,26 @@ project "PrismEngine"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links 
 	{ 
 		"GLFW",
+		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 
@@ -53,13 +67,13 @@ project "PrismEngine"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
 		{
 			"PE_PLATFORM_WINDOWS",
-			"PE_BUILD_DLL"
+			"PE_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -69,19 +83,17 @@ project "PrismEngine"
 
 	filter "configurations:Debug"
 		defines "PE_DEBUG"
+		runtime "Debug"
 		symbols "On"
-
-		defines
-		{
-			"PE_ENABLE_ASSERTS"
-		}
 
 	filter "configurations:Release"
 		defines "PE_RELEASE"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "PE_DIST"
+		runtime "Release"
 		optimize "On"
 		symbols "Off"
 
@@ -89,6 +101,7 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -102,7 +115,9 @@ project "Sandbox"
 	includedirs
 	{
 		"PrismEngine/vendor/spdlog/include",
-		"PrismEngine/src"
+		"PrismEngine/src",
+		"PrismEngine/vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -118,7 +133,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -128,18 +142,16 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "PE_DEBUG"
+		runtime "Debug"
 		symbols "On"
-
-		defines
-		{
-			"PE_ENABLE_ASSERTS"
-		}
 
 	filter "configurations:Release"
 		defines "PE_RELEASE"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "PE_DIST"
+		runtime "Release"
 		optimize "On"
 		symbols "Off"

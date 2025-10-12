@@ -11,7 +11,7 @@ namespace PrismEngine
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
@@ -49,8 +49,7 @@ namespace PrismEngine
 			return getCategoryFlags() & category;
 		}
 
-	protected:
-		bool m_Handled = false;
+		bool Handled = false;
 	};
 
 	// --- Dispatcher ---
@@ -70,7 +69,7 @@ namespace PrismEngine
 		{
 			if (m_Event.getEventType() == T::getStaticType())
 			{
-				m_Event.m_Handled = func(static_cast<T&>(m_Event));
+				m_Event.Handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;

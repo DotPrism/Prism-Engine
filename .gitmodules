@@ -4,3 +4,6 @@
 [submodule "PrismEngine/vendor/GLFW"]
 	path = PrismEngine/vendor/GLFW
 	url = https://github.com/DotPrism/glfw
+[submodule "PrismEngine/vendor/imgui"]
+	path = PrismEngine/vendor/imgui
+	url = https://github.com/TheCherno/imgui
