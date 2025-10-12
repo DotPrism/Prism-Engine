@@ -17,7 +17,7 @@ public:
 			PE_TRACE("Tab key is pressed (poll)!");
 	}
 
-	virtual void onImGuiRender() override
+	void onImGuiRender() override
 	{
 		ImGui::Begin("Test");
 		ImGui::Text("Hello World");

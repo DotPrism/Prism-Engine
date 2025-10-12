@@ -1,5 +1,5 @@
 #include "pepch.h"
-#include "Application.h"
+#include "PrismEngine/Application.h"
 #include "PrismEngine/Log.h"
 
 #include <glad/glad.h>

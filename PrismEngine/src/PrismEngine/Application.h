@@ -1,9 +1,7 @@
 #pragma once
 
 #include "PrismEngine/Core.h"
-
-#include "Window.h"
-
+#include "PrismEngine/Window.h"
 #include "PrismEngine/LayerStack.h"
 #include "PrismEngine/Events/Event.h"
 #include "PrismEngine/Events/ApplicationEvent.h"
@@ -31,10 +29,10 @@ namespace PrismEngine
 		bool onWindowCloseEvent(WindowCloseEvent& event);
 
 		std::unique_ptr<Window> m_Window;
-		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		static Application* s_Instance;
+		ImGuiLayer* m_ImGuiLayer;
 	};
 
 	Application* createApplication();

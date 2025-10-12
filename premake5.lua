@@ -1,5 +1,5 @@
 workspace "PrismEngine"
-	platforms { "x86", "x64" }
+	architecture "x64"
 	startproject "Sandbox"
 
 	configurations
@@ -11,11 +11,12 @@ workspace "PrismEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "PrismEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "PrismEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "PrismEngine/vendor/imgui"
-IncludeDir["glm"] = "Hazel/vendor/glm"
+IncludeDir["glm"] = "PrismEngine/vendor/glm"
 
 include "PrismEngine/vendor/GLFW"
 include "PrismEngine/vendor/Glad"
@@ -59,12 +60,6 @@ project "PrismEngine"
 		"opengl32.lib"
 	}
 
-	filter "platforms:x86"
-        architecture "x86"
-
-    filter "platforms:x64"
-        architecture "x86_64"
-
 	filter "system:windows"
 		cppdialect "C++17"
 		systemversion "latest"
@@ -78,7 +73,7 @@ project "PrismEngine"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
 	filter "configurations:Debug"
@@ -95,7 +90,6 @@ project "PrismEngine"
 		defines "PE_DIST"
 		runtime "Release"
 		optimize "On"
-		symbols "Off"
 
 project "Sandbox"
 	location "Sandbox"
@@ -125,12 +119,6 @@ project "Sandbox"
 		"PrismEngine"
 	}
 
-	filter "platforms:x86"
-        architecture "x86"
-
-    filter "platforms:x64"
-        architecture "x86_64"
-
 	filter "system:windows"
 		cppdialect "C++17"
 		systemversion "latest"
@@ -154,4 +142,3 @@ project "Sandbox"
 		defines "PE_DIST"
 		runtime "Release"
 		optimize "On"
-		symbols "Off"

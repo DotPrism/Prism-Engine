@@ -3,7 +3,6 @@
 #include "PrismEngine/Layer.h"
 #include "PrismEngine/Events/MouseEvent.h"
 #include "PrismEngine/Events/KeyEvent.h"
-#include "PrismEngine/Application.h"
 
 namespace PrismEngine 
 {
