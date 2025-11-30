@@ -5,21 +5,17 @@
 #include "examples/imgui_impl_glfw.h"
 #include "examples/imgui_impl_opengl3.h"
 
-#include "PrismEngine/Application.h"
+#include "PrismEngine/Core/Application.h"
 
 // TEMPORARY
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-namespace PrismEngine 
+namespace PrismEngine::ImGuiBackend
 {
 
 	ImGuiLayer::ImGuiLayer()
 		: Layer("ImGuiLayer")
-	{
-	}
-
-	ImGuiLayer::~ImGuiLayer()
 	{
 	}
 
@@ -48,7 +44,7 @@ namespace PrismEngine
 			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 		}
 
-		Application& app = Application::get();
+		App::Application& app = App::Application::get();
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.getWindow().getNativeWindow());
 
 		// Setup Platform/Renderer bindings
@@ -62,7 +58,7 @@ namespace PrismEngine
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
 	}
-
+	
 	void ImGuiLayer::begin()
 	{
 		ImGui_ImplOpenGL3_NewFrame();
@@ -73,8 +69,8 @@ namespace PrismEngine
 	void ImGuiLayer::end()
 	{
 		ImGuiIO& io = ImGui::GetIO();
-		Application& app = Application::get();
-		io.DisplaySize = ImVec2(app.getWindow().getWidth(), app.getWindow().getHeight());
+		App::Application& app = App::Application::get();
+		io.DisplaySize = ImVec2((float)app.getWindow().getWidth(), (float)app.getWindow().getHeight());
 
 		// Rendering
 		ImGui::Render();
@@ -91,8 +87,8 @@ namespace PrismEngine
 
 	void ImGuiLayer::onImGuiRender()
 	{
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
+		/*static bool show = true;
+		ImGui::ShowDemoWindow(&show);*/
 	}
 
 }

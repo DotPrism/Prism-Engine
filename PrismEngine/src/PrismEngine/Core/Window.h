@@ -2,10 +2,10 @@
 
 #include "pepch.h"
 
-#include "PrismEngine/Core.h"
+#include "PrismEngine/Core/Core.h"
 #include "PrismEngine/Events/Event.h"
 
-namespace PrismEngine 
+namespace PrismEngine
 {
 
 	struct WindowProps
@@ -14,9 +14,9 @@ namespace PrismEngine
 		unsigned int Width;
 		unsigned int Height;
 
-		WindowProps(const std::string& title = "Prism Engine",
-			unsigned int width = 1280,
-			unsigned int height = 720)
+		WindowProps(const std::string& title = "PrismEngine",
+			        unsigned int width = 1280,
+			        unsigned int height = 720)
 			: Title(title), Width(width), Height(height)
 		{
 		}
@@ -28,7 +28,7 @@ namespace PrismEngine
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
 
-		virtual ~Window() {}
+		virtual ~Window() = default;
 
 		virtual void onUpdate() = 0;
 

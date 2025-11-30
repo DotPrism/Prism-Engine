@@ -7,17 +7,26 @@
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\PrismEngine">
       <UniqueIdentifier>{3DDC0ED5-A967-7C99-B278-FF8D1E83D899}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\PrismEngine\Core">
+      <UniqueIdentifier>{B52E7CEE-A1BD-05B8-4ADC-19B3364A165E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\PrismEngine\Events">
       <UniqueIdentifier>{81C16483-6DBB-8DD5-5628-24E642C1F341}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\PrismEngine\ImGui">
       <UniqueIdentifier>{27CB6CBE-9337-28B9-5C2B-C016C8564A21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\PrismEngine\Renderer">
+      <UniqueIdentifier>{833496E6-6F59-E566-98A4-CAF68428E484}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -40,8 +49,29 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -51,14 +81,38 @@
     <ClInclude Include="src\PrismEngine.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\Application.h">
-      <Filter>src\PrismEngine</Filter>
+    <ClInclude Include="src\PrismEngine\Core\Application.h">
+      <Filter>src\PrismEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\Core.h">
-      <Filter>src\PrismEngine</Filter>
+    <ClInclude Include="src\PrismEngine\Core\Core.h">
+      <Filter>src\PrismEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\Entrypoint.h">
-      <Filter>src\PrismEngine</Filter>
+    <ClInclude Include="src\PrismEngine\Core\EntryPoint.h">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Core\Input.h">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Core\KeyCodes.h">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Core\Layer.h">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Core\LayerStack.h">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Core\Log.h">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Core\MouseButtonCodes.h">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Core\Timestep.h">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Core\Window.h">
+      <Filter>src\PrismEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\PrismEngine\Events\ApplicationEvent.h">
       <Filter>src\PrismEngine\Events</Filter>
@@ -75,26 +129,35 @@
     <ClInclude Include="src\PrismEngine\ImGui\ImGuiLayer.h">
       <Filter>src\PrismEngine\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\Input.h">
-      <Filter>src\PrismEngine</Filter>
+    <ClInclude Include="src\PrismEngine\Renderer\Buffer.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\KeyCodes.h">
-      <Filter>src\PrismEngine</Filter>
+    <ClInclude Include="src\PrismEngine\Renderer\GraphicsContext.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\Layer.h">
-      <Filter>src\PrismEngine</Filter>
+    <ClInclude Include="src\PrismEngine\Renderer\OrthographicCamera.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\LayerStack.h">
-      <Filter>src\PrismEngine</Filter>
+    <ClInclude Include="src\PrismEngine\Renderer\OrthographicCameraController.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\Log.h">
-      <Filter>src\PrismEngine</Filter>
+    <ClInclude Include="src\PrismEngine\Renderer\RenderCommand.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\MouseButtonCodes.h">
-      <Filter>src\PrismEngine</Filter>
+    <ClInclude Include="src\PrismEngine\Renderer\Renderer.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\Window.h">
-      <Filter>src\PrismEngine</Filter>
+    <ClInclude Include="src\PrismEngine\Renderer\RendererAPI.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Renderer\Shader.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Renderer\Texture.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Renderer\VertexArray.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\pepch.h">
       <Filter>src</Filter>
@@ -1359,16 +1422,46 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platform\Windows\WIndowsInput.cpp">
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\PrismEngine\Application.cpp">
-      <Filter>src\PrismEngine</Filter>
+    <ClCompile Include="src\PrismEngine\Core\Application.cpp">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Core\Layer.cpp">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Core\LayerStack.cpp">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Core\Log.cpp">
+      <Filter>src\PrismEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\PrismEngine\ImGui\ImGuiBuild.cpp">
       <Filter>src\PrismEngine\ImGui</Filter>
@@ -1376,17 +1469,38 @@
     <ClCompile Include="src\PrismEngine\ImGui\ImGuiLayer.cpp">
       <Filter>src\PrismEngine\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\PrismEngine\Layer.cpp">
-      <Filter>src\PrismEngine</Filter>
+    <ClCompile Include="src\PrismEngine\Renderer\Buffer.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\PrismEngine\LayerStack.cpp">
-      <Filter>src\PrismEngine</Filter>
+    <ClCompile Include="src\PrismEngine\Renderer\OrthographicCamera.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\PrismEngine\Log.cpp">
-      <Filter>src\PrismEngine</Filter>
+    <ClCompile Include="src\PrismEngine\Renderer\OrthographicCameraController.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Renderer\RenderCommand.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Renderer\Renderer.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Renderer\RendererAPI.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Renderer\Shader.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Renderer\Texture.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Renderer\VertexArray.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\pepch.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

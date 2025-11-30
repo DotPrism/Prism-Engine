@@ -1,22 +1,28 @@
 #pragma once
 
-#include "PrismEngine/Core.h"
-#include "PrismEngine/Window.h"
-#include "PrismEngine/LayerStack.h"
+#include "Core.h"
+
+#include "Window.h"
+#include "PrismEngine/Core/LayerStack.h"
 #include "PrismEngine/Events/Event.h"
 #include "PrismEngine/Events/ApplicationEvent.h"
+
 #include "PrismEngine/ImGui/ImGuiLayer.h"
 
-namespace PrismEngine
+#include "PrismEngine/Core/Timestep.h"
+
+namespace PrismEngine::App
 {
-	class PEAPI Application
+
+	class Application
 	{
 	public:
 		Application();
-		virtual ~Application();
+		virtual ~Application() = default;
 
 		void run();
-		void onEvent(Event& event);
+
+		void onEvent(Event& e);
 
 		void pushLayer(Layer* layer);
 		void pushOverlay(Layer* layer);
@@ -24,16 +30,20 @@ namespace PrismEngine
 		inline Window& getWindow() { return *m_Window; }
 
 		inline static Application& get() { return *s_Instance; }
-
 	private:
-		bool onWindowCloseEvent(WindowCloseEvent& event);
+		bool onWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiBackend::ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		float m_LastFrameTime = 0.0f;
+	private:
 		static Application* s_Instance;
-		ImGuiLayer* m_ImGuiLayer;
 	};
 
+	// To be defined in CLIENT
 	Application* createApplication();
+
 }

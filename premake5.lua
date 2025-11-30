@@ -9,6 +9,11 @@ workspace "PrismEngine"
 		"Dist"
 	}
 
+	flags
+	{
+		"MultiProcessorCompile"
+	}
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
@@ -17,16 +22,20 @@ IncludeDir["GLFW"] = "PrismEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "PrismEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "PrismEngine/vendor/imgui"
 IncludeDir["glm"] = "PrismEngine/vendor/glm"
+IncludeDir["stb_image"] = "PrismEngine/vendor/stb_image"
 
-include "PrismEngine/vendor/GLFW"
-include "PrismEngine/vendor/Glad"
-include "PrismEngine/vendor/imgui"
+group "Dependencies"
+	include "PrismEngine/vendor/GLFW"
+	include "PrismEngine/vendor/Glad"
+	include "PrismEngine/vendor/imgui"
 
+group ""
 project "PrismEngine"
 	location "PrismEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -38,8 +47,15 @@ project "PrismEngine"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -49,7 +65,8 @@ project "PrismEngine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links 
@@ -61,7 +78,6 @@ project "PrismEngine"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
@@ -71,31 +87,27 @@ project "PrismEngine"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-		}
-
 	filter "configurations:Debug"
 		defines "PE_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "PE_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "PE_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -120,7 +132,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
@@ -131,14 +142,14 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "PE_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "PE_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "PE_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"

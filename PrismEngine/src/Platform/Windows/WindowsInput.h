@@ -1,8 +1,8 @@
 #pragma once
 
-#include "PrismEngine/Input.h"
+#include "PrismEngine/Core/Input.h"
 
-namespace PrismEngine 
+namespace PrismEngine
 {
 
 	class WindowsInput : public Input

@@ -1,12 +1,11 @@
 #pragma once
 
-#include "PrismEngine/Core.h"
+#include "PrismEngine/Core/Core.h"
 #include "Layer.h"
 
 #include <vector>
 
-namespace PrismEngine 
-{
+namespace PrismEngine {
 
 	class PEAPI LayerStack
 	{

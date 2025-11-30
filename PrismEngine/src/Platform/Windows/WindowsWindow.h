@@ -1,10 +1,11 @@
 #pragma once
 
-#include "PrismEngine/Window.h"
+#include "PrismEngine/Core/Window.h"
+#include "PrismEngine/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
-namespace PrismEngine 
+namespace PrismEngine
 {
 
 	class WindowsWindow : public Window
@@ -29,6 +30,7 @@ namespace PrismEngine
 		virtual void shutdown();
 	private:
 		GLFWwindow* m_Window;
+		Renderer::GraphicsContext* m_Context;
 
 		struct WindowData
 		{

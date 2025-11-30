@@ -2,8 +2,7 @@
 
 #include "Event.h"
 
-namespace PrismEngine 
-{
+namespace PrismEngine {
 
 	class PEAPI KeyEvent : public Event
 	{
@@ -13,8 +12,7 @@ namespace PrismEngine
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
 		KeyEvent(int keycode)
-			: m_KeyCode(keycode) {
-		}
+			: m_KeyCode(keycode) {}
 
 		int m_KeyCode;
 	};
@@ -23,8 +21,7 @@ namespace PrismEngine
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
-			: KeyEvent(keycode), m_RepeatCount(repeatCount) {
-		}
+			: KeyEvent(keycode), m_RepeatCount(repeatCount) {}
 
 		inline int getRepeatCount() const { return m_RepeatCount; }
 
@@ -44,8 +41,7 @@ namespace PrismEngine
 	{
 	public:
 		KeyReleasedEvent(int keycode)
-			: KeyEvent(keycode) {
-		}
+			: KeyEvent(keycode) {}
 
 		std::string toString() const override
 		{
@@ -57,21 +53,19 @@ namespace PrismEngine
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
- 	class PEAPI KeyTypedEvent : public KeyEvent
- 	{
- 	public:
- 		KeyTypedEvent(int keycode)
- 			: KeyEvent(keycode) {
- 		}
- 
- 		std::string toString() const override
- 		{
- 			std::stringstream ss;
- 			ss << "KeyTypedEvent: " << m_KeyCode;
- 			return ss.str();
- 		}
- 
- 		EVENT_CLASS_TYPE(KeyTyped)
- 	};
+	class PEAPI KeyTypedEvent : public KeyEvent
+	{
+	public:
+		KeyTypedEvent(int keycode)
+			: KeyEvent(keycode) {}
 
+		std::string toString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
+	};
 }

@@ -1,17 +1,19 @@
 #pragma once
 
-#include "PrismEngine/Layer.h"
-#include "PrismEngine/Events/MouseEvent.h"
-#include "PrismEngine/Events/KeyEvent.h"
+#include "PrismEngine/Core/Layer.h"
 
-namespace PrismEngine 
+#include "PrismEngine/Events/ApplicationEvent.h"
+#include "PrismEngine/Events/KeyEvent.h"
+#include "PrismEngine/Events/MouseEvent.h"
+
+namespace PrismEngine::ImGuiBackend
 {
 
 	class PEAPI ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();
-		~ImGuiLayer();
+		~ImGuiLayer() = default;
 
 		virtual void onAttach() override;
 		virtual void onDetach() override;

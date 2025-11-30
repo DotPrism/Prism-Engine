@@ -1,14 +1,5 @@
 #pragma once
 
-#ifdef PE_PLATFORM_WINDOWS
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
-#include <Windows.h>
-#ifdef Window
-#undef Window
-#endif
-#endif
-
 #include <iostream>
 #include <memory>
 #include <utility>
@@ -17,6 +8,13 @@
 
 #include <string>
 #include <sstream>
+#include <array>
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
+
+#include "PrismEngine/Core/Log.h"
+
+#ifdef PE_PLATFORM_WINDOWS
+	#include <Windows.h>
+#endif
