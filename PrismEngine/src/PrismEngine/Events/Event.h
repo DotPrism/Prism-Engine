@@ -1,7 +1,9 @@
 #pragma once
 
-#include "pepch.h"
-#include "PrismEngine/Core/Core.h"
+#include <functional>
+
+#include "PrismEngine/Debug/Instrumentor.h"
+#include "PrismEngine/Core/Base.h"
 
 namespace PrismEngine {
 
@@ -35,10 +37,12 @@ namespace PrismEngine {
 
 #define EVENT_CLASS_CATEGORY(category) virtual int getCategoryFlags() const override { return category; }
 
-	class PEAPI Event
+	class Event
 	{
 	public:
 		bool Handled = false;
+
+		virtual ~Event() = default;
 
 		virtual EventType getEventType() const = 0;
 		virtual const char* getName() const = 0;
@@ -64,7 +68,7 @@ namespace PrismEngine {
 		{
 			if (m_Event.getEventType() == T::getStaticType())
 			{
-				m_Event.Handled = func(static_cast<T&>(m_Event));
+				m_Event.Handled |= func(static_cast<T&>(m_Event));
 				return true;
 			}
 			return false;

@@ -19,17 +19,32 @@
     <Filter Include="src\PrismEngine\Core">
       <UniqueIdentifier>{B52E7CEE-A1BD-05B8-4ADC-19B3364A165E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\PrismEngine\Debug">
+      <UniqueIdentifier>{73600EBE-DFCC-C9B8-A8C0-611614ECEB20}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\PrismEngine\Events">
       <UniqueIdentifier>{81C16483-6DBB-8DD5-5628-24E642C1F341}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\PrismEngine\ImGui">
       <UniqueIdentifier>{27CB6CBE-9337-28B9-5C2B-C016C8564A21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\PrismEngine\Math">
+      <UniqueIdentifier>{366F81EE-22FE-0AB8-CB1C-1FB3B78A1B5E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\PrismEngine\Renderer">
       <UniqueIdentifier>{833496E6-6F59-E566-98A4-CAF68428E484}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\PrismEngine\Scene">
+      <UniqueIdentifier>{1AC31CBF-862F-D8B9-4F23-7017BB4EFA21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\PrismEngine\Utils">
+      <UniqueIdentifier>{5D574ABF-C9C3-05BA-92B7-9D17FEE22722}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\ImGuizmo">
+      <UniqueIdentifier>{73BF7F4C-DF4A-ED10-E85B-700554664911}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor\glm">
       <UniqueIdentifier>{829FC5A8-6E57-07F6-D75E-E051C335A2E6}</UniqueIdentifier>
@@ -60,6 +75,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -84,7 +102,10 @@
     <ClInclude Include="src\PrismEngine\Core\Application.h">
       <Filter>src\PrismEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\Core\Core.h">
+    <ClInclude Include="src\PrismEngine\Core\Assert.h">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Core\Base.h">
       <Filter>src\PrismEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\PrismEngine\Core\EntryPoint.h">
@@ -105,7 +126,10 @@
     <ClInclude Include="src\PrismEngine\Core\Log.h">
       <Filter>src\PrismEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\PrismEngine\Core\MouseButtonCodes.h">
+    <ClInclude Include="src\PrismEngine\Core\MouseCodes.h">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Core\PlatformDetection.h">
       <Filter>src\PrismEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\PrismEngine\Core\Timestep.h">
@@ -113,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="src\PrismEngine\Core\Window.h">
       <Filter>src\PrismEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Debug\Instrumentor.h">
+      <Filter>src\PrismEngine\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\PrismEngine\Events\ApplicationEvent.h">
       <Filter>src\PrismEngine\Events</Filter>
@@ -129,7 +156,19 @@
     <ClInclude Include="src\PrismEngine\ImGui\ImGuiLayer.h">
       <Filter>src\PrismEngine\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\PrismEngine\Math\Math.h">
+      <Filter>src\PrismEngine\Math</Filter>
+    </ClInclude>
     <ClInclude Include="src\PrismEngine\Renderer\Buffer.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Renderer\Camera.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Renderer\EditorCamera.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Renderer\FrameBuffer.h">
       <Filter>src\PrismEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\PrismEngine\Renderer\GraphicsContext.h">
@@ -147,6 +186,9 @@
     <ClInclude Include="src\PrismEngine\Renderer\Renderer.h">
       <Filter>src\PrismEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\PrismEngine\Renderer\Renderer2D.h">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\PrismEngine\Renderer\RendererAPI.h">
       <Filter>src\PrismEngine\Renderer</Filter>
     </ClInclude>
@@ -159,8 +201,32 @@
     <ClInclude Include="src\PrismEngine\Renderer\VertexArray.h">
       <Filter>src\PrismEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\PrismEngine\Scene\Components.h">
+      <Filter>src\PrismEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Scene\Entity.h">
+      <Filter>src\PrismEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Scene\Scene.h">
+      <Filter>src\PrismEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Scene\SceneCamera.h">
+      <Filter>src\PrismEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Scene\SceneSerializer.h">
+      <Filter>src\PrismEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Scene\ScriptableEntity.h">
+      <Filter>src\PrismEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PrismEngine\Utils\PlatformUtils.h">
+      <Filter>src\PrismEngine\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="src\pepch.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h">
+      <Filter>vendor\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\common.hpp">
       <Filter>vendor\glm\glm</Filter>
@@ -184,9 +250,6 @@
       <Filter>vendor\glm\glm\detail</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\detail\compute_common.hpp">
-      <Filter>vendor\glm\glm\detail</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\detail\compute_vector_decl.hpp">
       <Filter>vendor\glm\glm\detail</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\detail\compute_vector_relational.hpp">
@@ -345,7 +408,7 @@
     <ClInclude Include="vendor\glm\glm\detail\type_vec4.inl">
       <Filter>vendor\glm\glm\detail</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\detail\type_vec_simd.inl">
+    <ClInclude Include="vendor\glm\glm\detail\type_vec4_simd.inl">
       <Filter>vendor\glm\glm\detail</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\exponential.hpp">
@@ -354,19 +417,10 @@
     <ClInclude Include="vendor\glm\glm\ext.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\_matrix_vectorize.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\matrix_clip_space.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\matrix_clip_space.inl">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_common.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_common.inl">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\matrix_double2x2.hpp">
@@ -477,66 +531,6 @@
     <ClInclude Include="vendor\glm\glm\ext\matrix_float4x4_precision.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int2x2.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int2x2_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int2x3.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int2x3_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int2x4.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int2x4_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int3x2.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int3x2_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int3x3.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int3x3_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int3x4.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int3x4_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int4x2.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int4x2_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int4x3.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int4x3_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int4x4.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_int4x4_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_integer.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_integer.inl">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\matrix_projection.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
@@ -553,60 +547,6 @@
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\matrix_transform.inl">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint2x2.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint2x2_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint2x3.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint2x3_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint2x4.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint2x4_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint3x2.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint3x2_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint3x3.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint3x3_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint3x4.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint3x4_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint4x2.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint4x2_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint4x3.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint4x3_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint4x4.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\matrix_uint4x4_sized.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\quaternion_common.hpp">
@@ -673,24 +613,6 @@
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\scalar_int_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\scalar_integer.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\scalar_integer.inl">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\scalar_packing.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\scalar_packing.inl">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\scalar_reciprocal.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\scalar_reciprocal.inl">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\scalar_relational.hpp">
@@ -789,43 +711,25 @@
     <ClInclude Include="vendor\glm\glm\ext\vector_int1.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_int1_sized.hpp">
+    <ClInclude Include="vendor\glm\glm\ext\vector_int1_precision.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\vector_int2.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_int2_sized.hpp">
+    <ClInclude Include="vendor\glm\glm\ext\vector_int2_precision.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\vector_int3.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_int3_sized.hpp">
+    <ClInclude Include="vendor\glm\glm\ext\vector_int3_precision.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\vector_int4.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_int4_sized.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_integer.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_integer.inl">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_packing.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_packing.inl">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_reciprocal.hpp">
-      <Filter>vendor\glm\glm\ext</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_reciprocal.inl">
+    <ClInclude Include="vendor\glm\glm\ext\vector_int4_precision.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\vector_relational.hpp">
@@ -837,25 +741,25 @@
     <ClInclude Include="vendor\glm\glm\ext\vector_uint1.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_uint1_sized.hpp">
+    <ClInclude Include="vendor\glm\glm\ext\vector_uint1_precision.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\vector_uint2.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_uint2_sized.hpp">
+    <ClInclude Include="vendor\glm\glm\ext\vector_uint2_precision.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\vector_uint3.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_uint3_sized.hpp">
+    <ClInclude Include="vendor\glm\glm\ext\vector_uint3_precision.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\vector_uint4.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\ext\vector_uint4_sized.hpp">
+    <ClInclude Include="vendor\glm\glm\ext\vector_uint4_precision.hpp">
       <Filter>vendor\glm\glm\ext</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\ext\vector_ulp.hpp">
@@ -952,6 +856,9 @@
       <Filter>vendor\glm\glm\gtc</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtc\reciprocal.hpp">
+      <Filter>vendor\glm\glm\gtc</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\glm\gtc\reciprocal.inl">
       <Filter>vendor\glm\glm\gtc</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtc\round.hpp">
@@ -1092,7 +999,7 @@
     <ClInclude Include="vendor\glm\glm\gtx\fast_trigonometry.inl">
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\gtx\float_normalize.inl">
+    <ClInclude Include="vendor\glm\glm\gtx\float_notmalize.inl">
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtx\functions.hpp">
@@ -1135,12 +1042,6 @@
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtx\io.inl">
-      <Filter>vendor\glm\glm\gtx</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\gtx\iteration.hpp">
-      <Filter>vendor\glm\glm\gtx</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\gtx\iteration.inl">
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtx\log_base.hpp">
@@ -1224,6 +1125,9 @@
     <ClInclude Include="vendor\glm\glm\gtx\number_precision.hpp">
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
+    <ClInclude Include="vendor\glm\glm\gtx\number_precision.inl">
+      <Filter>vendor\glm\glm\gtx</Filter>
+    </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtx\optimum_pow.hpp">
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
@@ -1234,12 +1138,6 @@
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtx\orthonormalize.inl">
-      <Filter>vendor\glm\glm\gtx</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\gtx\pca.hpp">
-      <Filter>vendor\glm\glm\gtx</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\gtx\pca.inl">
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtx\perpendicular.hpp">
@@ -1312,12 +1210,6 @@
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtx\string_cast.inl">
-      <Filter>vendor\glm\glm\gtx</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\gtx\structured_bindings.hpp">
-      <Filter>vendor\glm\glm\gtx</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\gtx\structured_bindings.inl">
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtx\texture.hpp">
@@ -1433,6 +1325,9 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1446,6 +1341,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
@@ -1463,13 +1361,28 @@
     <ClCompile Include="src\PrismEngine\Core\Log.cpp">
       <Filter>src\PrismEngine\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\PrismEngine\Core\Window.cpp">
+      <Filter>src\PrismEngine\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\PrismEngine\ImGui\ImGuiBuild.cpp">
       <Filter>src\PrismEngine\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\PrismEngine\ImGui\ImGuiLayer.cpp">
       <Filter>src\PrismEngine\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="src\PrismEngine\Math\Math.cpp">
+      <Filter>src\PrismEngine\Math</Filter>
+    </ClCompile>
     <ClCompile Include="src\PrismEngine\Renderer\Buffer.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Renderer\EditorCamera.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Renderer\FrameBuffer.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Renderer\GraphicsContext.cpp">
       <Filter>src\PrismEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\PrismEngine\Renderer\OrthographicCamera.cpp">
@@ -1484,6 +1397,9 @@
     <ClCompile Include="src\PrismEngine\Renderer\Renderer.cpp">
       <Filter>src\PrismEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\PrismEngine\Renderer\Renderer2D.cpp">
+      <Filter>src\PrismEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\PrismEngine\Renderer\RendererAPI.cpp">
       <Filter>src\PrismEngine\Renderer</Filter>
     </ClCompile>
@@ -1496,8 +1412,23 @@
     <ClCompile Include="src\PrismEngine\Renderer\VertexArray.cpp">
       <Filter>src\PrismEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\PrismEngine\Scene\Entity.cpp">
+      <Filter>src\PrismEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Scene\Scene.cpp">
+      <Filter>src\PrismEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Scene\SceneCamera.cpp">
+      <Filter>src\PrismEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrismEngine\Scene\SceneSerializer.cpp">
+      <Filter>src\PrismEngine\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\pepch.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp">
+      <Filter>vendor\ImGuizmo</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>

@@ -1,26 +1,27 @@
 #pragma once
 
-#include "Event.h"
+#include "PrismEngine/Events/Event.h"
+#include "PrismEngine/Core/KeyCodes.h"
 
 namespace PrismEngine {
 
-	class PEAPI KeyEvent : public Event
+	class KeyEvent : public Event
 	{
 	public:
-		inline int getKeyCode() const { return m_KeyCode; }
+		inline KeyCode getKeyCode() const { return m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
-		KeyEvent(int keycode)
+		KeyEvent(KeyCode keycode)
 			: m_KeyCode(keycode) {}
 
-		int m_KeyCode;
+		KeyCode m_KeyCode;
 	};
 
-	class PEAPI KeyPressedEvent : public KeyEvent
+	class KeyPressedEvent : public KeyEvent
 	{
 	public:
-		KeyPressedEvent(int keycode, int repeatCount)
+		KeyPressedEvent(KeyCode keycode, int repeatCount)
 			: KeyEvent(keycode), m_RepeatCount(repeatCount) {}
 
 		inline int getRepeatCount() const { return m_RepeatCount; }
@@ -37,10 +38,10 @@ namespace PrismEngine {
 		int m_RepeatCount;
 	};
 
-	class PEAPI KeyReleasedEvent : public KeyEvent
+	class KeyReleasedEvent : public KeyEvent
 	{
 	public:
-		KeyReleasedEvent(int keycode)
+		KeyReleasedEvent(KeyCode keycode)
 			: KeyEvent(keycode) {}
 
 		std::string toString() const override
@@ -53,10 +54,10 @@ namespace PrismEngine {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
-	class PEAPI KeyTypedEvent : public KeyEvent
+	class KeyTypedEvent : public KeyEvent
 	{
 	public:
-		KeyTypedEvent(int keycode)
+		KeyTypedEvent(KeyCode keycode)
 			: KeyEvent(keycode) {}
 
 		std::string toString() const override

@@ -1,5 +1,5 @@
 #include "pepch.h"
-#include "OpenGLShader.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 
 #include <fstream>
 
@@ -9,7 +9,7 @@
 
 namespace PrismEngine::Platform::OpenGL
 {
-	static GLenum ShaderTypeFromString(const std::string& type)
+	static GLenum shaderTypeFromString(const std::string& type)
 	{
 		if (type == "vertex")
 			return GL_VERTEX_SHADER;
@@ -22,6 +22,8 @@ namespace PrismEngine::Platform::OpenGL
 
 	OpenGLShader::OpenGLShader(const std::string& filepath)
 	{
+		PE_PROFILE_FUNCTION();
+
 		std::string source = readFile(filepath);
 		auto shaderSources = preProcess(source);
 		compile(shaderSources);
@@ -36,6 +38,8 @@ namespace PrismEngine::Platform::OpenGL
 	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 		: m_Name(name)
 	{
+		PE_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSrc;
 		sources[GL_FRAGMENT_SHADER] = fragmentSrc;
@@ -44,25 +48,82 @@ namespace PrismEngine::Platform::OpenGL
 
 	OpenGLShader::~OpenGLShader()
 	{
+		PE_PROFILE_FUNCTION();
+
 		glDeleteProgram(m_RendererID);
+	}
+
+	void OpenGLShader::setInt(const std::string& name, int value)
+	{
+		PE_PROFILE_FUNCTION();
+
+		uploadUniformInt(name, value);
+	}
+
+	void OpenGLShader::setIntArray(const std::string& name, int* values, uint32_t count)
+	{
+		uploadUniformIntArray(name, values, count);
+	}
+
+	void OpenGLShader::setFloat(const std::string& name, float value)
+	{
+		PE_PROFILE_FUNCTION();
+
+		uploadUniformFloat(name, value);
+	}
+
+	void OpenGLShader::setFloat2(const std::string& name, const glm::vec2& value)
+	{
+		PE_PROFILE_FUNCTION();
+
+		uploadUniformFloat2(name, value);
+	}
+
+	void OpenGLShader::setFloat3(const std::string& name, const glm::vec3& value)
+	{
+		PE_PROFILE_FUNCTION();
+
+		uploadUniformFloat3(name, value);
+	}
+
+	void OpenGLShader::setFloat4(const std::string& name, const glm::vec4& value)
+	{
+		PE_PROFILE_FUNCTION();
+
+		uploadUniformFloat4(name, value);
+	}
+
+	void OpenGLShader::setMat4(const std::string& name, const glm::mat4& value)
+	{
+		PE_PROFILE_FUNCTION();
+
+		uploadUniformMat4(name, value);
 	}
 
 	std::string OpenGLShader::readFile(const std::string& filepath)
 	{
+		PE_PROFILE_FUNCTION();
+
 		std::string result;
-		std::ifstream in(filepath, std::ios::in | std::ios::binary);
+		std::ifstream in(filepath, std::ios::in | std::ios::binary); // ifstream closes itself due to RAII
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
-			result.resize(in.tellg());
-			in.seekg(0, std::ios::beg);
-			in.read(&result[0], result.size());
-			in.close();
-			;
+			size_t size = in.tellg();
+			if (size != -1)
+			{
+				result.resize(size);
+				in.seekg(0, std::ios::beg);
+				in.read(&result[0], size);
+			}
+			else
+			{
+				PE_CORE_ERROR("Could not read from file '{0}'", filepath);
+			}
 		}
 		else
 		{
-			PE_ENGINE_ERROR("Could not open file '{0}'", filepath);
+			PE_CORE_ERROR("Could not open file '{0}'", filepath);
 		}
 
 		return result;
@@ -70,22 +131,26 @@ namespace PrismEngine::Platform::OpenGL
 
 	std::unordered_map<GLenum, std::string> OpenGLShader::preProcess(const std::string& source)
 	{
+		PE_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> shaderSources;
 
 		const char* typeToken = "#type";
 		size_t typeTokenLength = strlen(typeToken);
-		size_t pos = source.find(typeToken, 0);
+		size_t pos = source.find(typeToken, 0); //Start of shader type declaration line
 		while (pos != std::string::npos)
 		{
-			size_t eol = source.find_first_of("\r\n", pos);
+			size_t eol = source.find_first_of("\r\n", pos); //End of shader type declaration line
 			PE_CORE_ASSERT(eol != std::string::npos, "Syntax error");
-			size_t begin = pos + typeTokenLength + 1;
+			size_t begin = pos + typeTokenLength + 1; //Start of shader type name (after "#type " keyword)
 			std::string type = source.substr(begin, eol - begin);
-			PE_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
+			PE_CORE_ASSERT(shaderTypeFromString(type), "Invalid shader type specified");
 
-			size_t nextLinePos = source.find_first_not_of("\r\n", eol);
-			pos = source.find(typeToken, nextLinePos);
-			shaderSources[ShaderTypeFromString(type)] = source.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos));
+			size_t nextLinePos = source.find_first_not_of("\r\n", eol); //Start of shader code after shader type declaration line
+			PE_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
+			pos = source.find(typeToken, nextLinePos); //Start of next shader type declaration line
+
+			shaderSources[shaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
 		}
 
 		return shaderSources;
@@ -93,6 +158,8 @@ namespace PrismEngine::Platform::OpenGL
 
 	void OpenGLShader::compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
+		PE_PROFILE_FUNCTION();
+
 		GLuint program = glCreateProgram();
 		PE_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
 		std::array<GLenum, 2> glShaderIDs;
@@ -121,7 +188,7 @@ namespace PrismEngine::Platform::OpenGL
 
 				glDeleteShader(shader);
 
-				PE_ENGINE_ERROR("{0}", infoLog.data());
+				PE_CORE_ERROR("{0}", infoLog.data());
 				PE_CORE_ASSERT(false, "Shader compilation failure!");
 				break;
 			}
@@ -153,7 +220,7 @@ namespace PrismEngine::Platform::OpenGL
 			for (auto id : glShaderIDs)
 				glDeleteShader(id);
 
-			PE_ENGINE_ERROR("{0}", infoLog.data());
+			PE_CORE_ERROR("{0}", infoLog.data());
 			PE_CORE_ASSERT(false, "Shader link failure!");
 			return;
 		}
@@ -167,11 +234,15 @@ namespace PrismEngine::Platform::OpenGL
 
 	void OpenGLShader::bind() const
 	{
+		PE_PROFILE_FUNCTION();
+
 		glUseProgram(m_RendererID);
 	}
 
 	void OpenGLShader::unbind() const
 	{
+		PE_PROFILE_FUNCTION();
+
 		glUseProgram(0);
 	}
 
@@ -179,6 +250,12 @@ namespace PrismEngine::Platform::OpenGL
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform1i(location, value);
+	}
+
+	void OpenGLShader::uploadUniformIntArray(const std::string& name, int* values, uint32_t count)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1iv(location, count, values);
 	}
 
 	void OpenGLShader::uploadUniformFloat(const std::string& name, float value)

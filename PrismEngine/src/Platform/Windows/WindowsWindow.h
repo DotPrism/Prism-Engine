@@ -30,7 +30,7 @@ namespace PrismEngine
 		virtual void shutdown();
 	private:
 		GLFWwindow* m_Window;
-		Renderer::GraphicsContext* m_Context;
+		Scope<Rendering::GraphicsContext> m_Context;
 
 		struct WindowData
 		{

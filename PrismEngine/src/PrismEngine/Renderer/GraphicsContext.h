@@ -1,12 +1,16 @@
 #pragma once
 
-namespace PrismEngine::Renderer {
+namespace PrismEngine::Rendering {
 
 	class GraphicsContext
 	{
 	public:
+		virtual ~GraphicsContext() = default;
+
 		virtual void init() = 0;
 		virtual void swapBuffers() = 0;
+
+		static Scope<GraphicsContext> create(void* window);
 	};
 
 }

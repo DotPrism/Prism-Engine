@@ -1,12 +1,19 @@
+include "./vendor/premake/premake_customization/solution_items.lua"
+
 workspace "PrismEngine"
-	architecture "x64"
-	startproject "Sandbox"
+	architecture "x86_64"
+	startproject "PrismEngine-Editor"
 
 	configurations
 	{
 		"Debug",
 		"Release",
 		"Dist"
+	}
+
+	solution_items
+	{
+		".editorconfig"
 	}
 
 	flags
@@ -18,138 +25,24 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["GLFW"] = "PrismEngine/vendor/GLFW/include"
-IncludeDir["Glad"] = "PrismEngine/vendor/Glad/include"
-IncludeDir["ImGui"] = "PrismEngine/vendor/imgui"
-IncludeDir["glm"] = "PrismEngine/vendor/glm"
-IncludeDir["stb_image"] = "PrismEngine/vendor/stb_image"
+IncludeDir["GLFW"] = "%{wks.location}/PrismEngine/vendor/GLFW/include"
+IncludeDir["Glad"] = "%{wks.location}/PrismEngine/vendor/Glad/include"
+IncludeDir["ImGui"] = "%{wks.location}/PrismEngine/vendor/imgui"
+IncludeDir["glm"] = "%{wks.location}/PrismEngine/vendor/glm"
+IncludeDir["stb_image"] = "%{wks.location}/PrismEngine/vendor/stb_image"
+IncludeDir["entt"] = "%{wks.location}/PrismEngine/vendor/entt/include"
+IncludeDir["yaml_cpp"] = "%{wks.location}/PrismEngine/vendor/yaml-cpp/include"
+IncludeDir["ImGuizmo"] = "%{wks.location}/PrismEngine/vendor/ImGuizmo"
 
 group "Dependencies"
+	include "vendor/premake"
 	include "PrismEngine/vendor/GLFW"
 	include "PrismEngine/vendor/Glad"
 	include "PrismEngine/vendor/imgui"
+	include "PrismEngine/vendor/yaml-cpp"
 
-group ""
-project "PrismEngine"
-	location "PrismEngine"
-	kind "StaticLib"
-	language "C++"
-	cppdialect "C++17"
-	staticruntime "on"
-
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-	pchheader "pepch.h"
-	pchsource "PrismEngine/src/pepch.cpp"
-
-	files
-	{
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/vendor/stb_image/**.h",
-		"%{prj.name}/vendor/stb_image/**.cpp",
-		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl",
-	}
-
-	defines
-	{
-		"_CRT_SECURE_NO_WARNINGS"
-	}
-
-	includedirs
-	{
-		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
-	}
-
-	links 
-	{ 
-		"GLFW",
-		"Glad",
-		"ImGui",
-		"opengl32.lib"
-	}
-
-	filter "system:windows"
-		systemversion "latest"
-
-		defines
-		{
-			"PE_PLATFORM_WINDOWS",
-			"PE_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
-		}
-
-	filter "configurations:Debug"
-		defines "PE_DEBUG"
-		runtime "Debug"
-		symbols "on"
-
-	filter "configurations:Release"
-		defines "PE_RELEASE"
-		runtime "Release"
-		optimize "on"
-
-	filter "configurations:Dist"
-		defines "PE_DIST"
-		runtime "Release"
-		optimize "on"
-
-project "Sandbox"
-	location "Sandbox"
-	kind "ConsoleApp"
-	language "C++"
-	cppdialect "C++17"
-	staticruntime "on"
-
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-	files
-	{
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
-	}
-
-	includedirs
-	{
-		"PrismEngine/vendor/spdlog/include",
-		"PrismEngine/src",
-		"PrismEngine/vendor",
-		"%{IncludeDir.glm}"
-	}
-
-	links
-	{
-		"PrismEngine"
-	}
-
-	filter "system:windows"
-		systemversion "latest"
-
-		defines
-		{
-			"PE_PLATFORM_WINDOWS"
-		}
-
-	filter "configurations:Debug"
-		defines "PE_DEBUG"
-		runtime "Debug"
-		symbols "on"
-
-	filter "configurations:Release"
-		defines "PE_RELEASE"
-		runtime "Release"
-		optimize "on"
-
-	filter "configurations:Dist"
-		defines "PE_DIST"
-		runtime "Release"
-		optimize "on"
+group "Engine"
+	include "PrismEngine"
+group "Apps"
+	include "Sandbox"
+	include "PrismEngine-Editor"

@@ -1,5 +1,5 @@
 #include "pepch.h"
-#include "WindowsWindow.h"
+#include "Platform/Windows/WindowsWindow.h"
 
 #include "PrismEngine/Events/ApplicationEvent.h"
 #include "PrismEngine/Events/MouseEvent.h"
@@ -7,51 +7,62 @@
 
 #include "Platform/OpenGL/OpenGLContext.h"
 
+#include "PrismEngine/Renderer/Renderer.h"
+
+#include "PrismEngine/Core/Input.h"
+
 namespace PrismEngine
 {
-	
-	static bool s_GLFWInitialized = false;
+	static uint8_t s_GLFWWindowCount = 0;
 
 	static void GLFWErrorCallback(int error, const char* description)
 	{
-		PE_ENGINE_ERROR("GLFW Error ({0}): {1}", error, description);
-	}
-
-	Window* Window::create(const WindowProps& props)
-	{
-		return new WindowsWindow(props);
+		PE_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
+		PE_PROFILE_FUNCTION();
+
 		init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		PE_PROFILE_FUNCTION();
+
 		shutdown();
 	}
 
 	void WindowsWindow::init(const WindowProps& props)
 	{
+		PE_PROFILE_FUNCTION();
+
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
-		PE_ENGINE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+		PE_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
-		if (!s_GLFWInitialized)
+		if (s_GLFWWindowCount == 0)
 		{
 			// TODO: glfwTerminate on system shutdown
 			int success = glfwInit();
-			PE_CORE_ASSERT(success, "Could not intialize GLFW!");
+			PE_CORE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
-			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		{
+			PE_PROFILE_SCOPE("glfwCreateWindow");
+#if defined(PE_DEBUG)
+			if (Rendering::Renderer::getAPI() == Rendering::RendererAPI::API::OpenGL)
+				glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
+			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+			++s_GLFWWindowCount;
+		}
 
-		m_Context = new Platform::OpenGL::OpenGLContext(m_Window);
+		m_Context = Rendering::GraphicsContext::create(m_Window);
 		m_Context->init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
@@ -150,17 +161,28 @@ namespace PrismEngine
 
 	void WindowsWindow::shutdown()
 	{
+		PE_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(m_Window);
+		--s_GLFWWindowCount;
+		if (s_GLFWWindowCount == 0)
+		{
+			glfwTerminate();
+		}
 	}
 
 	void WindowsWindow::onUpdate()
 	{
+		PE_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Context->swapBuffers();
 	}
 
 	void WindowsWindow::setVSync(bool enabled)
 	{
+		PE_PROFILE_FUNCTION();
+
 		if (enabled)
 			glfwSwapInterval(1);
 		else

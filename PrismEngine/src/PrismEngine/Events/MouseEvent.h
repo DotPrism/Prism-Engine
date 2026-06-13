@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Event.h"
+#include "PrismEngine/Events/Event.h"
+#include "PrismEngine/Core/MouseCodes.h"
 
 namespace PrismEngine {
 
-	class PEAPI MouseMovedEvent : public Event
+	class MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y)
@@ -26,7 +27,7 @@ namespace PrismEngine {
 		float m_MouseX, m_MouseY;
 	};
 
-	class PEAPI MouseScrolledEvent : public Event
+	class MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
@@ -48,23 +49,23 @@ namespace PrismEngine {
 		float m_XOffset, m_YOffset;
 	};
 
-	class PEAPI MouseButtonEvent : public Event
+	class MouseButtonEvent : public Event
 	{
 	public:
-		inline int GetMouseButton() const { return m_Button; }
+		inline MouseCode GetMouseButton() const { return m_Button; }
 
-		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput | EventCategoryMouseButton)
 	protected:
-		MouseButtonEvent(int button)
+		MouseButtonEvent(MouseCode button)
 			: m_Button(button) {}
 
-		int m_Button;
+		MouseCode m_Button;
 	};
 
-	class PEAPI MouseButtonPressedEvent : public MouseButtonEvent
+	class MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
-		MouseButtonPressedEvent(int button)
+		MouseButtonPressedEvent(MouseCode button)
 			: MouseButtonEvent(button) {}
 
 		std::string toString() const override
@@ -77,10 +78,10 @@ namespace PrismEngine {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class PEAPI MouseButtonReleasedEvent : public MouseButtonEvent
+	class MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
-		MouseButtonReleasedEvent(int button)
+		MouseButtonReleasedEvent(MouseCode button)
 			: MouseButtonEvent(button) {}
 
 		std::string toString() const override

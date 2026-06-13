@@ -1,19 +1,19 @@
 #include "pepch.h"
-#include "Shader.h"
+#include "PrismEngine/Renderer/Shader.h"
 
 #include <glad/glad.h>
 
-#include "Renderer.h"
+#include "PrismEngine/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
-namespace PrismEngine::Renderer
+namespace PrismEngine::Rendering
 {
 	Ref<Shader> Shader::create(const std::string& filepath)
 	{
 		switch (Renderer::getAPI())
 		{
 		case RendererAPI::API::None:    PE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:  return std::make_shared<Platform::OpenGL::OpenGLShader>(filepath);
+		case RendererAPI::API::OpenGL:  return createRef<Platform::OpenGL::OpenGLShader>(filepath);
 		case RendererAPI::API::Direct3D:    PE_CORE_ASSERT(false, "RendererAPI::Direct3D is currently not supported!"); return nullptr;
 		case RendererAPI::API::Vulkan:    PE_CORE_ASSERT(false, "RendererAPI::Vulkan is currently not supported!"); return nullptr;
 		}
@@ -27,7 +27,7 @@ namespace PrismEngine::Renderer
 		switch (Renderer::getAPI())
 		{
 		case RendererAPI::API::None:    PE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:  return std::make_shared<Platform::OpenGL::OpenGLShader>(name, vertexSrc, fragmentSrc);
+		case RendererAPI::API::OpenGL:  return createRef<Platform::OpenGL::OpenGLShader>(name, vertexSrc, fragmentSrc);
 		case RendererAPI::API::Direct3D:    PE_CORE_ASSERT(false, "RendererAPI::Direct3D is currently not supported!"); return nullptr;
 		case RendererAPI::API::Vulkan:    PE_CORE_ASSERT(false, "RendererAPI::Vulkan is currently not supported!"); return nullptr;
 		}
@@ -49,7 +49,7 @@ namespace PrismEngine::Renderer
 		add(name, shader);
 	}
 
-	Ref<PrismEngine::Renderer::Shader> ShaderLibrary::load(const std::string& filepath)
+	Ref<Shader> ShaderLibrary::load(const std::string& filepath)
 	{
 		auto shader = Shader::create(filepath);
 		add(shader);

@@ -4,23 +4,26 @@
 
 namespace PrismEngine::Platform::OpenGL
 {
-	class OpenGLVertexBuffer : public Renderer::VertexBuffer
+	class OpenGLVertexBuffer : public Rendering::VertexBuffer
 	{
 	public:
+		OpenGLVertexBuffer(uint32_t size);
 		OpenGLVertexBuffer(float* vertices, uint32_t size);
 		virtual ~OpenGLVertexBuffer();
 
 		virtual void bind() const override;
 		virtual void unbind() const override;
 
-		virtual const Renderer::BufferLayout& getLayout() const override { return m_Layout; }
-		virtual void setLayout(const Renderer::BufferLayout& layout) override { m_Layout = layout; }
+		virtual void setData(const void* data, uint32_t size) override;
+
+		virtual const Rendering::BufferLayout& getLayout() const override { return m_Layout; }
+		virtual void setLayout(const Rendering::BufferLayout& layout) override { m_Layout = layout; }
 	private:
 		uint32_t m_RendererID;
-		Renderer::BufferLayout m_Layout;
+		Rendering::BufferLayout m_Layout;
 	};
 
-	class OpenGLIndexBuffer : public Renderer::IndexBuffer
+	class OpenGLIndexBuffer : public Rendering::IndexBuffer
 	{
 	public:
 		OpenGLIndexBuffer(uint32_t* indices, uint32_t count);

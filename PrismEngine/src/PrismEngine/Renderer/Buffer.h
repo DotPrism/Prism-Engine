@@ -1,7 +1,8 @@
 #pragma once
 
-namespace PrismEngine::Renderer
+namespace PrismEngine::Rendering
 {
+
 	enum class ShaderDataType
 	{
 		None = 0, Float, Float2, Float3, Float4, Mat3, Mat4, Int, Int2, Int3, Int4, Bool
@@ -32,11 +33,11 @@ namespace PrismEngine::Renderer
 	{
 		std::string Name;
 		ShaderDataType Type;
-		uint32_t Size;
-		uint32_t Offset;
+		size_t Size;
+		size_t Offset;
 		bool Normalized;
 
-		BufferElement() {}
+		BufferElement() = default;
 
 		BufferElement(ShaderDataType type, const std::string& name, bool normalized = false)
 			: Name(name), Type(type), Size(shaderDataTypeSize(type)), Offset(0), Normalized(normalized)
@@ -70,13 +71,13 @@ namespace PrismEngine::Renderer
 	public:
 		BufferLayout() {}
 
-		BufferLayout(const std::initializer_list<BufferElement>& elements)
+		BufferLayout(std::initializer_list<BufferElement> elements)
 			: m_Elements(elements)
 		{
 			calculateOffsetsAndStride();
 		}
 
-		inline uint32_t GetStride() const { return m_Stride; }
+		inline uint32_t getStride() const { return m_Stride; }
 		inline const std::vector<BufferElement>& getElements() const { return m_Elements; }
 
 		std::vector<BufferElement>::iterator begin() { return m_Elements.begin(); }
@@ -86,7 +87,7 @@ namespace PrismEngine::Renderer
 	private:
 		void calculateOffsetsAndStride()
 		{
-			uint32_t offset = 0;
+			size_t offset = 0;
 			m_Stride = 0;
 			for (auto& element : m_Elements)
 			{
@@ -99,6 +100,7 @@ namespace PrismEngine::Renderer
 		std::vector<BufferElement> m_Elements;
 		uint32_t m_Stride = 0;
 	};
+
 	class VertexBuffer
 	{
 	public:
@@ -107,22 +109,26 @@ namespace PrismEngine::Renderer
 		virtual void bind() const = 0;
 		virtual void unbind() const = 0;
 
+		virtual void setData(const void* data, uint32_t size) = 0;
+
 		virtual const BufferLayout& getLayout() const = 0;
 		virtual void setLayout(const BufferLayout& layout) = 0;
 
-		static VertexBuffer* create(float* vertices, uint32_t size);
+		static Ref<VertexBuffer> create(uint32_t size);
+		static Ref<VertexBuffer> create(float* vertices, uint32_t size);
 	};
 
 	class IndexBuffer
 	{
 	public:
-		virtual ~IndexBuffer() {}
+		virtual ~IndexBuffer() = default;
 
 		virtual void bind() const = 0;
 		virtual void unbind() const = 0;
 
 		virtual uint32_t getCount() const = 0;
 
-		static IndexBuffer* create(uint32_t* indices, uint32_t size);
+		static Ref<IndexBuffer> create(uint32_t* indices, uint32_t size);
 	};
+
 }

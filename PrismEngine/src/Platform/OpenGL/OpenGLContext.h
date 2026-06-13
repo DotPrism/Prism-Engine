@@ -7,7 +7,7 @@ struct GLFWwindow;
 namespace PrismEngine::Platform::OpenGL
 {
 
-	class OpenGLContext : public Renderer::GraphicsContext
+	class OpenGLContext : public Rendering::GraphicsContext
 	{
 	public:
 		OpenGLContext(GLFWwindow* windowHandle);

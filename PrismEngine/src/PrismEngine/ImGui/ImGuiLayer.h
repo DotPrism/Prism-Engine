@@ -9,7 +9,7 @@
 namespace PrismEngine::ImGuiBackend
 {
 
-	class PEAPI ImGuiLayer : public Layer
+	class ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();
@@ -17,12 +17,17 @@ namespace PrismEngine::ImGuiBackend
 
 		virtual void onAttach() override;
 		virtual void onDetach() override;
-		virtual void onImGuiRender() override;
+		virtual void onEvent(Event& e) override;
 
 		void begin();
 		void end();
+
+		void blockEvents(bool block) { m_BlockEvents = block; }
+
+		void setDarkThemeColors();
 	private:
 		float m_Time = 0.0f;
+		bool m_BlockEvents = true;
 	};
 
 }

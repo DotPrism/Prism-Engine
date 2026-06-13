@@ -1,9 +1,9 @@
 #include "pepch.h"
-#include "RenderCommand.h"
+#include "PrismEngine/Renderer/RenderCommand.h"
 
 #include "Platform/OpenGL/OpenGLRendererAPI.h"
 
-namespace PrismEngine::Renderer
+namespace PrismEngine::Rendering
 {
-	RendererAPI* RenderCommand::s_RendererAPI = new Platform::OpenGL::OpenGLRendererAPI;
+	Scope<RendererAPI> RenderCommand::s_RendererAPI = RendererAPI::create();
 }

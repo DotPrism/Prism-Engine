@@ -1,15 +1,29 @@
 #include "pepch.h"
-#include "Renderer.h"
+#include "PrismEngine/Renderer/Renderer.h"
+#include "PrismEngine/Renderer/Renderer2D.h"
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
-namespace PrismEngine::Renderer
+namespace PrismEngine::Rendering
 {
-	Renderer::SceneData* Renderer::s_SceneData = new Renderer::SceneData;
+	Scope<Renderer::SceneData> Renderer::s_SceneData = createScope<Renderer::SceneData>();
 
 	void Renderer::init()
 	{
+		PE_PROFILE_FUNCTION();
+
 		RenderCommand::init();
+		Renderer2D::init();
+	}
+
+	void Renderer::shutdown()
+	{
+		Renderer2D::shutdown();
+	}
+
+	void Renderer::onWindowResize(uint32_t width, uint32_t height)
+	{
+		RenderCommand::setViewport(0, 0, width, height);
 	}
 
 	void Renderer::beginScene(OrthographicCamera& camera)

@@ -16,17 +16,22 @@ namespace PrismEngine {
 		void onUpdate(Time::Timestep ts);
 		void onEvent(Event& e);
 
-		Renderer::OrthographicCamera& getCamera() { return m_Camera; }
-		const Renderer::OrthographicCamera& getCamera() const { return m_Camera; }
+		void onResize(float width, float height);
+
+		Rendering::OrthographicCamera& getCamera() { return m_Camera; }
+		const Rendering::OrthographicCamera& getCamera() const { return m_Camera; }
+
+		inline void setMoveWithKeys(bool canMove) { m_CanMoveWithKeys = canMove; }
 	private:
 		bool onMouseScrolled(MouseScrolledEvent& e);
 		bool onWindowResized(WindowResizeEvent& e);
 	private:
 		float m_AspectRatio;
 		float m_ZoomLevel = 1.0f;
-		Renderer::OrthographicCamera m_Camera;
+		Rendering::OrthographicCamera m_Camera;
 
 		bool m_Rotation;
+		bool m_CanMoveWithKeys;
 
 		glm::vec3 m_CameraPosition = { 0.0f, 0.0f, 0.0f };
 		float m_CameraRotation = 0.0f;

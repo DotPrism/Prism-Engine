@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 
-namespace PrismEngine::Renderer
+namespace PrismEngine::Rendering
 {
 	class OrthographicCamera
 	{

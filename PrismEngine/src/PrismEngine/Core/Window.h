@@ -1,8 +1,8 @@
 #pragma once
 
-#include "pepch.h"
+#include <sstream>
 
-#include "PrismEngine/Core/Core.h"
+#include "PrismEngine/Core/Base.h"
 #include "PrismEngine/Events/Event.h"
 
 namespace PrismEngine
@@ -23,7 +23,7 @@ namespace PrismEngine
 	};
 
 	// Interface representing a desktop system based Window
-	class PEAPI Window
+	class Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
@@ -42,7 +42,7 @@ namespace PrismEngine
 
 		virtual void* getNativeWindow() const = 0;
 
-		static Window* create(const WindowProps& props = WindowProps());
+		static Scope<Window> create(const WindowProps& props = WindowProps());
 	};
 
 }

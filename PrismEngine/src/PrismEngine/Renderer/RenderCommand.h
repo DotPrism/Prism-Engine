@@ -1,8 +1,8 @@
 #pragma once
 
-#include "RendererAPI.h"
+#include "PrismEngine/Renderer/RendererAPI.h"
 
-namespace PrismEngine::Renderer
+namespace PrismEngine::Rendering
 {
 	class RenderCommand
 	{
@@ -10,6 +10,11 @@ namespace PrismEngine::Renderer
 		inline static void init()
 		{
 			s_RendererAPI->init();
+		}
+
+		inline static void setViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height)
+		{
+			s_RendererAPI->setViewport(x, y, width, height);
 		}
 
 		inline static void setClearColor(const glm::vec4& color)
@@ -22,11 +27,11 @@ namespace PrismEngine::Renderer
 			s_RendererAPI->clear();
 		}
 
-		inline static void drawIndexed(const std::shared_ptr<VertexArray>& vertexArray)
+		inline static void drawIndexed(const std::shared_ptr<VertexArray>& vertexArray, uint32_t count = 0)
 		{
-			s_RendererAPI->drawIndexed(vertexArray);
+			s_RendererAPI->drawIndexed(vertexArray, count);
 		}
 	private:
-		static RendererAPI* s_RendererAPI;
+		static Scope<RendererAPI> s_RendererAPI;
 	};
 }

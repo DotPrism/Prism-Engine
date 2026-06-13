@@ -1,47 +1,41 @@
 #include "pepch.h"
-#include "WindowsInput.h"
+#include "PrismEngine/Core/Input.h"
 
 #include "PrismEngine/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace PrismEngine
 {
-
-	Input* Input::s_Instance = new WindowsInput();
-
-	bool WindowsInput::isKeyPressedImpl(int keycode)
+	bool Input::isKeyPressed(const KeyCode key)
 	{
 		auto window = static_cast<GLFWwindow*>(App::Application::get().getWindow().getNativeWindow());
-		auto state = glfwGetKey(window, keycode);
+		auto state = glfwGetKey(window, static_cast<int32_t>(key));
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	bool WindowsInput::isMouseButtonPressedImpl(int button)
+	bool Input::isMouseButtonPressed(const MouseCode button)
 	{
 		auto window = static_cast<GLFWwindow*>(App::Application::get().getWindow().getNativeWindow());
-		auto state = glfwGetMouseButton(window, button);
+		auto state = glfwGetMouseButton(window, static_cast<int32_t>(button));
 		return state == GLFW_PRESS;
 	}
 
-	std::pair<float, float> WindowsInput::getMousePositionImpl()
+	glm::vec2 Input::getMousePosition()
 	{
-		auto window = static_cast<GLFWwindow*>(App::Application::get().getWindow().getNativeWindow());
+		auto* window = static_cast<GLFWwindow*>(App::Application::get().getWindow().getNativeWindow());
 		double xpos, ypos;
 		glfwGetCursorPos(window, &xpos, &ypos);
 
 		return { (float)xpos, (float)ypos };
 	}
 
-	float WindowsInput::getMouseXImpl()
+	float Input::getMouseX()
 	{
-		auto[x, y] = getMousePositionImpl();
-		return x;
+		return getMousePosition().x;
 	}
 
-	float WindowsInput::getMouseYImpl()
+	float Input::getMouseY()
 	{
-		auto[x, y] = getMousePositionImpl();
-		return y;
+		return getMousePosition().y;
 	}
-
 }

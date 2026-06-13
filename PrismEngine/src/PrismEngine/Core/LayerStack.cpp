@@ -1,11 +1,7 @@
 #include "pepch.h"
-#include "LayerStack.h"
+#include "PrismEngine/Core/LayerStack.h"
 
 namespace PrismEngine {
-
-	LayerStack::LayerStack()
-	{
-	}
 
 	LayerStack::~LayerStack()
 	{

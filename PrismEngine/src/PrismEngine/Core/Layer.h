@@ -1,12 +1,12 @@
 #pragma once
 
-#include "PrismEngine/Core/Core.h"
+#include "PrismEngine/Core/Base.h"
 #include "PrismEngine/Core/Timestep.h"
 #include "PrismEngine/Events/Event.h"
 
 namespace PrismEngine {
 
-	class PEAPI Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");

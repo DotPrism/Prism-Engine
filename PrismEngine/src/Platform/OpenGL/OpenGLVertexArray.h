@@ -3,7 +3,7 @@
 
 namespace PrismEngine::Platform::OpenGL
 {
-	class OpenGLVertexArray : public Renderer::VertexArray
+	class OpenGLVertexArray : public Rendering::VertexArray
 	{
 	public:
 		OpenGLVertexArray();
@@ -12,15 +12,15 @@ namespace PrismEngine::Platform::OpenGL
 		virtual void bind() const override;
 		virtual void unbind() const override;
 
-		virtual void addVertexBuffer(const std::shared_ptr<Renderer::VertexBuffer>& vertexBuffer) override;
-		virtual void setIndexBuffer(const std::shared_ptr<Renderer::IndexBuffer>& indexBuffer) override;
+		virtual void addVertexBuffer(const Ref<Rendering::VertexBuffer>& vertexBuffer) override;
+		virtual void setIndexBuffer(const Ref<Rendering::IndexBuffer>& indexBuffer) override;
 
-		virtual const std::vector<std::shared_ptr<Renderer::VertexBuffer>>& getVertexBuffers() const { return m_VertexBuffers; }
-		virtual const std::shared_ptr<Renderer::IndexBuffer>& getIndexBuffer() const { return m_IndexBuffer; }
+		virtual const std::vector<Ref<Rendering::VertexBuffer>>& getVertexBuffers() const { return m_VertexBuffers; }
+		virtual const Ref<Rendering::IndexBuffer>& getIndexBuffer() const { return m_IndexBuffer; }
 	private:
 		uint32_t m_RendererID;
 		uint32_t m_VertexBufferIndex = 0;
-		std::vector<std::shared_ptr<Renderer::VertexBuffer>> m_VertexBuffers;
-		std::shared_ptr<Renderer::IndexBuffer> m_IndexBuffer;
+		std::vector<Ref<Rendering::VertexBuffer>> m_VertexBuffers;
+		Ref<Rendering::IndexBuffer> m_IndexBuffer;
 	};
 }
